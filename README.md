@@ -16,7 +16,7 @@ Demo for rbac-spring-boot-starter
 + 每个类都有注释解释，如有疑问请提Issue或Comment，一起探讨，谢谢。
 
 # 使用方法
-1.clone本项目到本地，Add as Maven Project并加载Maven依赖  
+1.clone本项目到本地，Add as a Maven Project并加载Maven依赖  
 2.运行schema中的SQL，建立基础表  
 3.填充 application.yml 中的数据库和Redis连接信息  
 4.Run DemoApplication.  
