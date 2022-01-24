@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--BaseRbacMapper基于MySQL数据源的默认实现 copy from
+https://github.com/flashvayne/rbac-spring-boot-start/blob/master/src/main/resources/mapper/RbacMapper-MySQL.xml
+-->
+<mapper namespace="com.github.flashvayne.rbac.mapper.BaseRbacMapper">
+
+    <select id="selectPassword" resultType="java.lang.String">
+        select password from rbac_user
+        where user_id = #{userId}
+    </select>
+
+    <select id="selectUser" resultType="com.github.flashvayne.rbac.dto.AuthUserDTO">
+        select user_id userId,name,status,mobile,email from rbac_user
+        where user_id = #{userId}
+    </select>
+
+    <select id="selectRole" resultType="com.github.flashvayne.rbac.dto.AuthRoleDTO">
+        select B.id,name,`desc` from rbac_user_role A
+        inner join rbac_role B
+        ON A.role_id = B.id
+        where A.user_id = #{userId}
+    </select>
+
+    <select id="selectResource" resultType="com.github.flashvayne.rbac.dto.AuthResourceDTO">
+        select B.id,B.type,B.name,B.url from rbac_role_resource A
+                                                 inner join rbac_resource B
+                                                            on A.resource_id = B.id
+        where role_id = #{roleId}
+    </select>
+
+</mapper>
