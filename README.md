@@ -24,4 +24,4 @@ Demo for rbac-spring-boot-starter
 # 作者信息
 邮箱: flashvayne@gmail.com
 
-博客: https://blog.vayne.ink
+博客: https://vayne.cc
