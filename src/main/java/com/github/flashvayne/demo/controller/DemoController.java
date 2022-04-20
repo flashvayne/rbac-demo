@@ -1,6 +1,7 @@
 package com.github.flashvayne.demo.controller;
 
 import com.github.flashvayne.Page;
+import com.github.flashvayne.demo.config.LogRecord;
 import com.github.flashvayne.demo.dto.LoginDTO;
 import com.github.flashvayne.demo.dto.ResponseModel;
 import com.github.flashvayne.demo.service.DemoService;
@@ -45,6 +46,7 @@ public class DemoController {
      * --header 'authorization: 4a35900b426a416ab75d35fbef54c4c25ab0cfda6b8746409c27d2b84b53b4b1'
      * 则会返回Http 401 Unauthorized.
      */
+    @LogRecord
     @RbacAuthorization
     @GetMapping("/student/list")
     public ResponseModel studentList(@RequestParam Integer pageNum, @RequestParam Integer pageSize,
@@ -58,6 +60,7 @@ public class DemoController {
      * 本例中rbac_role_resource表为班主任角色只配置了"/student/list"，并没有"/teacher/list"
      * 所以使用 “班主任” 的token访问此接口会报Http 403 Forbidden
      */
+    @LogRecord
     @RbacAuthorization
     @GetMapping("/teacher/list")
     public ResponseModel teacherList(@RequestParam Integer pageNum, @RequestParam Integer pageSize,
