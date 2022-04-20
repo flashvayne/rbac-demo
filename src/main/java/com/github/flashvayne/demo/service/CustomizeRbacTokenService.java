@@ -13,7 +13,7 @@ import java.util.Set;
 
 /**
  * 自定义RbacToken服务
- *
+ * <p>
  * 可通过继承DefaultRbacTokenServiceImpl重写用户信息相关功能
  *
  * @author flashvayne
@@ -36,7 +36,7 @@ public class CustomizeRbacTokenService extends DefaultRbacTokenServiceImpl {
         log.info("自定义rbacTokenService-----------generateTokenInfo调用");
 
         String token = super.generateTokenString(authUserDTO);
-        RbacTokenInfo tokenInfo = new RbacTokenInfo(token, authUserDTO, resources);
+        RbacTokenInfo tokenInfo = new RbacTokenInfo(token, authUserDTO, null, resources);
 
         try {
             super.redisTemplate.opsForValue().set(super.rbacProperties.getRedisKeyPrefix() + token, JSONObject.toJSONString(tokenInfo), Duration.ofSeconds(this.rbacProperties.getTokenExpireTime()));
