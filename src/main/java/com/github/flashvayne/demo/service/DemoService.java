@@ -1,6 +1,10 @@
 package com.github.flashvayne.demo.service;
 
+import com.github.flashvayne.demo.dto.StudentDTO;
+import com.github.flashvayne.demo.dto.TeacherDTO;
 import com.github.flashvayne.dto.PageInfo;
+
+import java.util.List;
 
 /**
  * DemoService
@@ -8,6 +12,6 @@ import com.github.flashvayne.dto.PageInfo;
  * @author flashvayne
  */
 public interface DemoService {
-    PageInfo listStudent(String name,Integer age);
-    PageInfo listTeacher(String name,Integer age);
+    PageInfo<List<StudentDTO>> listStudent(String name, Integer age);
+    PageInfo<List<TeacherDTO>> listTeacher(String name, Integer age);
 }
