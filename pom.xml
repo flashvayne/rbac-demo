@@ -47,13 +47,13 @@
         <dependency>
             <groupId>io.github.flashvayne</groupId>
             <artifactId>rbac-spring-boot-starter</artifactId>
-            <version>2.0.3</version>
+            <version>2.1.1</version>
         </dependency>
 
         <dependency>
             <groupId>io.github.flashvayne</groupId>
             <artifactId>mysql-mybatis-pagination</artifactId>
-            <version>2.0.0</version>
+            <version>2.0.3</version>
         </dependency>
 
         <dependency>
@@ -95,7 +95,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
-            <version>1.18.20</version>
+            <version>1.18.22</version>
         </dependency>
 
     </dependencies>

@@ -6,15 +6,15 @@ server:
       charset: UTF-8
       force: true
 rbac:
-  enable: true  #启动rbac-spring-boot-starter组件
-  tokenExpireTime: 7200  #无操作2小时过期
-  tokenName: authorization  #request header中token的变量名
-  redisKeyPrefix: 'rbac:'
+#  enable: true  #启动rbac-spring-boot-starter组件
+  token-expire-time: 7200  #无操作2小时过期
+  token-name: authorization  #request header中token的变量名
+  redis-key-prefix: 'rbac:'
 spring:
   redis:
     host: pi
     port: 16379
-    password:
+    password: redisToken123$
     timeout: 5000
     jedis: # 或lettuce
       pool:
@@ -27,7 +27,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://pi:3306/rbac_demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&useTimezone=true&serverTimezone=Asia/Shanghai
     username: vayne
-    password:
+    password: Qwer123$
     hikari:
       minimum-idle: 5 #最小空闲连接数量
       idle-timeout: 180000 #空闲连接存活最大时间，默认600000（10分钟）

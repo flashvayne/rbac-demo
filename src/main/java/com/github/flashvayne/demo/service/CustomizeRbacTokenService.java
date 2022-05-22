@@ -27,24 +27,21 @@ public class CustomizeRbacTokenService extends DefaultRbacTokenServiceImpl {
     }
 
     @Override
-    public RbacTokenInfo generateTokenInfo(AuthUserDTO authUserDTO, Set<String> resources) {
+    public boolean doGenerateToken(RbacTokenInfo rbacTokenInfo) {
 
         /**
          * 此处为测试自定义的RbacToken服务是否生效
          * 经验证，日志有打印此句，所以生效
          */
-        log.info("自定义rbacTokenService-----------generateTokenInfo调用");
-
-        String token = super.generateTokenString(authUserDTO);
-        RbacTokenInfo tokenInfo = new RbacTokenInfo(token, authUserDTO, null, resources);
-
+        log.info("自定义rbacTokenService-----------doGenerateToken调用");
         try {
-            super.redisTemplate.opsForValue().set(super.rbacProperties.getRedisKeyPrefix() + token, JSONObject.toJSONString(tokenInfo), Duration.ofSeconds(this.rbacProperties.getTokenExpireTime()));
-            log.info("generateToken: {},userInfo: {}", token, tokenInfo);
-            return tokenInfo;
+            redisTemplate.opsForValue().set(rbacProperties.getRedisKeyPrefix() + rbacTokenInfo.getToken(),
+                    JSONObject.toJSONString(rbacTokenInfo), Duration.ofSeconds(rbacProperties.getTokenExpireTime()));
+            log.info("doGenerateToken success: {}", rbacTokenInfo);
+            return true;
         } catch (Exception e) {
-            log.error("生成token异常", e);
-            return null;
+            log.error("doGenerateToken: ", e);
+            return false;
         }
     }
 
