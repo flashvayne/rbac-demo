@@ -38,4 +38,8 @@ public class ResponseModel implements Serializable {
     public static ResponseModel fail(Integer code, String msg, Object data) {
         return new ResponseModel(code, msg, data);
     }
+
+    public static ResponseModel fail(String msg) {
+        return new ResponseModel(0, msg, null);
+    }
 }

@@ -38,6 +38,12 @@ public class DemoController {
             return ResponseModel.fail(401, "用户名或密码错误", null);
         }
         AuthUserDTO authUserInfo = rbacAuthUserService.getAuthUserInfo(loginDTO.getUserId());
+
+        if (authUserInfo.getStatus() == 1) {
+            return ResponseModel.fail("登录失败，账号已被锁定");
+        }
+        //如果用户/角色/权限等信息有额外信息 可添加到addition属性
+//        demoService.setAdditionProperties(authUserInfo);
         RbacTokenInfo rbacTokenInfo = rbacTokenService.generateTokenInfo(authUserInfo);
         if (rbacTokenService.doGenerateToken(rbacTokenInfo)) {
             return ResponseModel.success("登录成功", rbacTokenInfo);
